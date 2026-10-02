@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'session_details_screen.dart';
 
 class CalendarView extends StatelessWidget {
   const CalendarView({super.key});
@@ -189,6 +190,7 @@ class CalendarView extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             _buildSessionCard(
+              context,
               '12',
               'SEP',
               'UI Design\nWorkshop',
@@ -197,6 +199,7 @@ class CalendarView extends StatelessWidget {
               const Color(0xFF7555F6),
             ),
             _buildSessionCard(
+              context,
               '15',
               'SEP',
               'French\nConversation',
@@ -252,6 +255,7 @@ class CalendarView extends StatelessWidget {
   }
 
   Widget _buildSessionCard(
+    BuildContext context,
     String day,
     String month,
     String title,
@@ -259,31 +263,51 @@ class CalendarView extends StatelessWidget {
     String mentor,
     Color borderHighlight,
   ) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFF1F5F9), width: 1.5),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.02),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: IntrinsicHeight(
-        child: Row(
-          children: [
-            Container(
-              width: 4,
-              decoration: BoxDecoration(
-                color: borderHighlight,
-                borderRadius: BorderRadius.circular(4),
-              ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => SessionDetailsScreen(
+              title: title.replaceAll('\n', ' ') == 'UI Design Workshop'
+                  ? 'UI Design Mentorship &\nPortfolio Review'
+                  : title.replaceAll('\n', ' '),
+              status: 'Confirmed',
+              dateMonth: month,
+              dateDay: day,
+              timeRange: time == '10:00 AM' ? '14:00 - 15:30' : time,
+              durationText: '(90 min)',
+              participantName: mentor == 'Elena G.' ? 'Marcus Sterling' : mentor,
+              participantRole: 'Expert UI/UX Designer',
             ),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: const Color(0xFFF1F5F9), width: 1.5),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.02),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              Container(
+                width: 4,
+                decoration: BoxDecoration(
+                  color: borderHighlight,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
             const SizedBox(width: 16),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -360,6 +384,7 @@ class CalendarView extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ),
+  );
   }
-}
+}

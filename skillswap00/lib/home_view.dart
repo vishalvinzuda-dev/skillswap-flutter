@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'top_categories_screen.dart';
+import 'design_skills_screen.dart';
+import 'ui_designers_screen.dart';
+import 'expert_profile_screen.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -39,16 +43,23 @@ class HomeView extends StatelessWidget {
             ),
 
             // Categories
-            _buildSectionHeader('Categories', 'See All'),
+            _buildSectionHeader('Categories', 'See All', onActionTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const TopCategoriesScreen(),
+                ),
+              );
+            }),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Row(
                 children: [
-                  _buildCategoryButton(Icons.edit, 'Design', true),
-                  _buildCategoryButton(Icons.code, 'Coding', false),
-                  _buildCategoryButton(Icons.music_note, 'Music', false),
-                  _buildCategoryButton(Icons.restaurant, 'Cooking', false),
+                  _buildCategoryButton(context, Icons.edit, 'Design', true),
+                  _buildCategoryButton(context, Icons.code, 'Coding', false),
+                  _buildCategoryButton(context, Icons.music_note, 'Music', false),
+                  _buildCategoryButton(context, Icons.restaurant, 'Cooking', false),
                 ],
               ),
             ),
@@ -69,113 +80,145 @@ class HomeView extends StatelessWidget {
             const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(24),
-                  border: Border.all(
-                    color: const Color(0xFFF1F5F9),
-                    width: 1.5,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const UIDesignersScreen(),
+                    ),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(
+                      color: const Color(0xFFF1F5F9),
+                      width: 1.5,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.02),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.02),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Vector Graphic Placeholder
-                    Container(
-                      height: 160,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFF8FAFC),
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Vector Graphic Placeholder
+                      Container(
+                        height: 160,
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFF8FAFC),
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(24),
+                          ),
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.design_services_rounded,
+                            size: 80,
+                            color: Color(0xFF38BDF8),
+                          ),
                         ),
                       ),
-                      child: const Center(
-                        child: Icon(
-                          Icons.design_services_rounded,
-                          size: 80,
-                          color: Color(0xFF38BDF8),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'UI/UX Design Masterclass',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF141A28),
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'UI/UX Design Masterclass',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF141A28),
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 12),
-                          Row(
-                            children: [
-                              const CircleAvatar(
-                                radius: 12,
-                                backgroundColor: Color(0xFF38BDF8),
-                                child: Icon(
-                                  Icons.person,
-                                  size: 14,
-                                  color: Colors.white,
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) =>
+                                            const ExpertProfileScreen(),
+                                      ),
+                                    );
+                                  },
+                                  child: const Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 12,
+                                        backgroundColor: Color(0xFF38BDF8),
+                                        child: Icon(
+                                          Icons.person,
+                                          size: 14,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        'Sarah Jenkins',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Color(0xFF64748B),
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(width: 8),
-                              const Text(
-                                'Sarah Jenkins',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color(0xFF64748B),
-                                  fontWeight: FontWeight.w500,
+                                const Spacer(),
+                                Container(
+                                  padding: const EdgeInsets.all(6),
+                                  decoration: BoxDecoration(
+                                    color: const Color(
+                                      0xFF7555F6,
+                                    ).withValues(alpha: 0.1),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.person_add_alt_1_rounded,
+                                    size: 14,
+                                    color: Color(0xFF7555F6),
+                                  ),
                                 ),
-                              ),
-                              const Spacer(),
-                              Container(
-                                padding: const EdgeInsets.all(6),
-                                decoration: BoxDecoration(
-                                  color: const Color(
-                                    0xFF7555F6,
-                                  ).withValues(alpha: 0.1),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(
-                                  Icons.person_add_alt_1_rounded,
-                                  size: 14,
-                                  color: Color(0xFF7555F6),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
             const SizedBox(height: 32),
 
             // Top Mentors
-            _buildSectionHeader('Top Mentors', 'View All'),
+            _buildSectionHeader('Top Mentors', 'View All', onActionTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const UIDesignersScreen(),
+                ),
+              );
+            }),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Row(
                 children: [
-                  _buildMentor('Jessica'),
-                  _buildMentor('David L'),
-                  _buildMentor('Sophie K'),
+                  _buildMentor(context, 'Jessica'),
+                  _buildMentor(context, 'David L'),
+                  _buildMentor(context, 'Sophie K'),
                 ],
               ),
             ),
@@ -185,7 +228,8 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionHeader(String title, String action) {
+  Widget _buildSectionHeader(String title, String action,
+      {VoidCallback? onActionTap}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       child: Row(
@@ -199,12 +243,15 @@ class HomeView extends StatelessWidget {
               color: Color(0xFF141A28),
             ),
           ),
-          Text(
-            action,
-            style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF7555F6),
+          GestureDetector(
+            onTap: onActionTap,
+            child: Text(
+              action,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF7555F6),
+              ),
             ),
           ),
         ],
@@ -212,73 +259,101 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryButton(IconData icon, String label, bool isSelected) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16),
-      child: Column(
-        children: [
-          Container(
-            width: 70,
-            height: 70,
-            decoration: BoxDecoration(
-              color: isSelected
-                  ? const Color(0xFF7555F6).withValues(alpha: 0.08)
-                  : Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
+  Widget _buildCategoryButton(
+      BuildContext context, IconData icon, String label, bool isSelected) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => DesignSkillsScreen(
+              categoryTitle: '$label Skills',
+            ),
+          ),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(right: 16),
+        child: Column(
+          children: [
+            Container(
+              width: 70,
+              height: 70,
+              decoration: BoxDecoration(
                 color: isSelected
-                    ? Colors.transparent
-                    : const Color(0xFFF1F5F9),
-                width: 1.5,
+                    ? const Color(0xFF7555F6).withValues(alpha: 0.08)
+                    : Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: isSelected
+                      ? Colors.transparent
+                      : const Color(0xFFF1F5F9),
+                  width: 1.5,
+                ),
+              ),
+              child: Icon(icon, color: const Color(0xFF141A28), size: 28),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF64748B),
               ),
             ),
-            child: Icon(icon, color: const Color(0xFF141A28), size: 28),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF64748B),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildMentor(String name) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 20),
-      child: Column(
-        children: [
-          Container(
-            width: 72,
-            height: 72,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: const Color(0xFF7555F6).withValues(alpha: 0.15),
-                width: 2,
+  Widget _buildMentor(BuildContext context, String name) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ExpertProfileScreen(
+              name: name,
+              role: 'UI/UX Mentor',
+              location: 'San Francisco, CA',
+            ),
+          ),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(right: 20),
+        child: Column(
+          children: [
+            Container(
+              width: 72,
+              height: 72,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: const Color(0xFF7555F6).withValues(alpha: 0.15),
+                  width: 2,
+                ),
+              ),
+              child: const CircleAvatar(
+                backgroundColor: Color(0xFFF8FAFC),
+                child: Icon(Icons.person, color: Color(0xFF94A3B8), size: 36),
               ),
             ),
-            child: const CircleAvatar(
-              backgroundColor: Color(0xFFF8FAFC),
-              child: Icon(Icons.person, color: Color(0xFF94A3B8), size: 36),
+            const SizedBox(height: 8),
+            Text(
+              name,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF64748B),
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            name,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF64748B),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
+
