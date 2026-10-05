@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'send_request_screen.dart';
 
 class ExpertProfileScreen extends StatelessWidget {
   final String name;
@@ -358,7 +359,17 @@ class ExpertProfileScreen extends StatelessWidget {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(20),
                             onTap: () {
-                              _showRequestSwapDialog(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => SendRequestScreen(
+                                    recipientName: name,
+                                    offeringSkill: skillsOffer.isNotEmpty
+                                        ? skillsOffer.first
+                                        : 'UI/UX Design',
+                                  ),
+                                ),
+                              );
                             },
                             child: const Center(
                               child: Text(
@@ -448,46 +459,6 @@ class ExpertProfileScreen extends StatelessWidget {
           fontSize: 13,
           fontWeight: FontWeight.w600,
         ),
-      ),
-    );
-  }
-
-  void _showRequestSwapDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (dialogCtx) => AlertDialog(
-        title: Text(
-          'Swap with $name',
-          style: const TextStyle(fontWeight: FontWeight.w800),
-        ),
-        content: Text(
-          'Send a skill swap proposal to $name for UI/UX mentorship in exchange for your offered skills.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogCtx),
-            child: const Text('Cancel'),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF7555F6),
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            onPressed: () {
-              Navigator.pop(dialogCtx);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Swap request sent to $name!'),
-                  backgroundColor: const Color(0xFF7555F6),
-                ),
-              );
-            },
-            child: const Text('Send Proposal'),
-          ),
-        ],
       ),
     );
   }

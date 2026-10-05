@@ -53,7 +53,7 @@ class _SkillSwapDashboardState extends State<SkillSwapDashboard> {
                 children: [
                   _buildNavItem(Icons.home_rounded, 0),
                   _buildNavItem(Icons.search_rounded, 1),
-                  _buildNavItem(Icons.calendar_today_rounded, 2),
+                  _buildNavItem(Icons.calendar_month_rounded, 2),
                   _buildNavItem(Icons.person_outline_rounded, 3),
                 ],
               ),
@@ -77,7 +77,7 @@ class _SkillSwapDashboardState extends State<SkillSwapDashboard> {
         ),
         child: Icon(
           icon,
-          color: isSelected ? Colors.white : const Color(0xFF64748B),
+          color: isSelected ? const Color(0xFF141A28) : const Color(0xFF64748B),
           size: 24,
         ),
       ),

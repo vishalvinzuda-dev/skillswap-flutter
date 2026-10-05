@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
-import 'dashboard_screen.dart';
 import 'splash_screen.dart'; // For SkillSwapEmblemPainter
 
 class OnboardingScreen extends StatefulWidget {
@@ -27,16 +26,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         curve: Curves.easeInOut,
       );
     } else {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const SkillSwapDashboard()),
-      );
+      _goToLogin();
     }
   }
 
   void _skip() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const SkillSwapDashboard()),
-    );
+    _goToLogin();
   }
 
   @override

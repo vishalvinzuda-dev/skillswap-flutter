@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'expert_profile_screen.dart';
+import 'schedule_screen.dart';
 
 class SessionDetailsScreen extends StatelessWidget {
   final String title;
@@ -36,53 +37,50 @@ class SessionDetailsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Container(
-                      width: 40,
-                      height: 40,
+                      width: 44,
+                      height: 44,
                       decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
                         border: Border.all(
-                          color: const Color(0xFFF1F5F9),
-                          width: 1.5,
+                          color: const Color(0xFFE2E8F0),
+                          width: 1.2,
                         ),
-                        borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Icon(
                         Icons.chevron_left_rounded,
                         color: Color(0xFF141A28),
+                        size: 24,
                       ),
                     ),
                   ),
+                  const SizedBox(width: 16),
                   const Text(
                     'Session Details',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.w800,
                       color: Color(0xFF141A28),
-                    ),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    alignment: Alignment.center,
-                    child: const Icon(
-                      Icons.flag_outlined,
-                      color: Color(0xFF94A3B8),
-                      size: 22,
+                      letterSpacing: -0.3,
                     ),
                   ),
                 ],
               ),
             ),
 
+            // Scrollable Content
             Expanded(
               child: SingleChildScrollView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 16,
+                ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 8),
 
@@ -93,7 +91,7 @@ class SessionDetailsScreen extends StatelessWidget {
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFDCFCE7),
+                        color: const Color(0xFFECFDF5),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Row(
@@ -103,7 +101,7 @@ class SessionDetailsScreen extends StatelessWidget {
                             width: 6,
                             height: 6,
                             decoration: const BoxDecoration(
-                              color: Color(0xFF16A34A),
+                              color: Color(0xFF10B981),
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -111,7 +109,7 @@ class SessionDetailsScreen extends StatelessWidget {
                           Text(
                             status,
                             style: const TextStyle(
-                              color: Color(0xFF16A34A),
+                              color: Color(0xFF10B981),
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
                             ),
@@ -122,57 +120,51 @@ class SessionDetailsScreen extends StatelessWidget {
 
                     const SizedBox(height: 16),
 
-                    // Title
+                    // Session Title (Left-aligned)
                     Text(
                       title,
-                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w800,
                         color: Color(0xFF141A28),
-                        height: 1.3,
+                        height: 1.35,
                       ),
                     ),
 
                     const SizedBox(height: 24),
 
-                    // Gradient Date & Time Card
+                    // Hero Date & Time Gradient Card
                     Container(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(18),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24),
                         gradient: const LinearGradient(
-                          colors: [
-                            Color(0xFF5B21B6),
-                            Color(0xFF7555F6),
-                            Color(0xFF8B5CF6),
-                          ],
+                          colors: [Color(0xFF6D28D9), Color(0xFF7C3AED)],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF7555F6)
-                                .withValues(alpha: 0.35),
-                            blurRadius: 20,
-                            offset: const Offset(0, 10),
+                            color: const Color(
+                              0xFF7C3AED,
+                            ).withValues(alpha: 0.35),
+                            blurRadius: 18,
+                            offset: const Offset(0, 8),
                           ),
                         ],
                       ),
                       child: Row(
                         children: [
-                          // Left: OCT 24
+                          // Left Date Box
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 8,
-                            ),
+                            width: 56,
+                            height: 56,
                             decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.15),
+                              color: Colors.white.withValues(alpha: 0.18),
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Column(
-                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   dateMonth,
@@ -187,7 +179,7 @@ class SessionDetailsScreen extends StatelessWidget {
                                   dateDay,
                                   style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 26,
+                                    fontSize: 22,
                                     fontWeight: FontWeight.w900,
                                     height: 1.1,
                                   ),
@@ -206,9 +198,9 @@ class SessionDetailsScreen extends StatelessWidget {
                                 Text(
                                   dateYearText,
                                   style: TextStyle(
-                                    color: Colors.white.withValues(alpha: 0.8),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white.withValues(alpha: 0.9),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 const SizedBox(height: 4),
@@ -219,20 +211,19 @@ class SessionDetailsScreen extends StatelessWidget {
                                       style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 14,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 6),
-                                    Text(
-                                      durationText,
-                                      style: TextStyle(
-                                        color:
-                                            Colors.white.withValues(alpha: 0.8),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w800,
                                       ),
                                     ),
                                   ],
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  durationText,
+                                  style: TextStyle(
+                                    color: Colors.white.withValues(alpha: 0.85),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ],
                             ),
@@ -240,16 +231,16 @@ class SessionDetailsScreen extends StatelessWidget {
 
                           // Right: Clock Icon circle
                           Container(
-                            width: 36,
-                            height: 36,
+                            width: 38,
+                            height: 38,
                             decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.18),
+                              color: Colors.white.withValues(alpha: 0.2),
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
                               Icons.access_time_filled_rounded,
                               color: Colors.white,
-                              size: 18,
+                              size: 20,
                             ),
                           ),
                         ],
@@ -259,20 +250,17 @@ class SessionDetailsScreen extends StatelessWidget {
                     const SizedBox(height: 32),
 
                     // Participant Section Header
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'PARTICIPANT',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 1.2,
-                          color: Color(0xFF94A3B8),
-                        ),
+                    const Text(
+                      'PARTICIPANT',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1.0,
+                        color: Color(0xFF94A3B8),
                       ),
                     ),
 
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 14),
 
                     // Participant Card
                     GestureDetector(
@@ -284,34 +272,18 @@ class SessionDetailsScreen extends StatelessWidget {
                               name: participantName,
                               role: participantRole,
                               location: 'London, UK',
-                              swapsCount: 18,
-                              skillsCount: 9,
-                              skillsOffer: const [
-                                'UI/UX Design',
-                                'Branding',
-                                'Design Systems',
-                                'Wireframing'
-                              ],
-                              wantToLearn: const [
-                                'React Native',
-                                '3D Blender',
-                                'Public Speaking'
-                              ],
                             ),
                           ),
                         );
                       },
                       child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 18,
-                          vertical: 16,
-                        ),
+                        padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: const Color(0xFFF1F5F9),
-                            width: 1.5,
+                            color: const Color(0xFFE2E8F0),
+                            width: 1.2,
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -323,58 +295,61 @@ class SessionDetailsScreen extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            // Online indicator dot + initial
-                            Container(
-                              width: 44,
-                              height: 44,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFF1F5F9),
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: const Color(0xFF7555F6)
-                                      .withValues(alpha: 0.3),
-                                  width: 2,
-                                ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  participantName.isNotEmpty
-                                      ? participantName[0]
-                                      : 'M',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w800,
-                                    fontSize: 18,
-                                    color: Color(0xFF7555F6),
+                            // Illustrated Avatar with Online Status Dot
+                            Stack(
+                              children: [
+                                Container(
+                                  width: 48,
+                                  height: 48,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFF8FAFC),
+                                    borderRadius: BorderRadius.circular(14),
+                                    border: Border.all(
+                                      color: const Color(0xFFE2E8F0),
+                                      width: 1,
+                                    ),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(14),
+                                    child: CustomPaint(
+                                      painter: _ParticipantAvatarPainter(),
+                                    ),
                                   ),
                                 ),
-                              ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: Container(
+                                    width: 11,
+                                    height: 11,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFF10B981),
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Colors.white,
+                                        width: 2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 14),
+
+                            const SizedBox(width: 16),
+
                             // Details
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 7,
-                                        height: 7,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xFF22C55E),
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 6),
-                                      Text(
-                                        participantName,
-                                        style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w700,
-                                          color: Color(0xFF141A28),
-                                        ),
-                                      ),
-                                    ],
+                                  Text(
+                                    participantName,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w800,
+                                      color: Color(0xFF141A28),
+                                      height: 1.2,
+                                    ),
                                   ),
                                   const SizedBox(height: 3),
                                   Text(
@@ -382,35 +357,61 @@ class SessionDetailsScreen extends StatelessWidget {
                                     style: const TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,
-                                      color: Color(0xFF94A3B8),
+                                      color: Color(0xFF64748B),
+                                      height: 1.2,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            const Icon(
-                              Icons.chevron_right_rounded,
-                              color: Color(0xFF94A3B8),
-                              size: 22,
+
+                            // Chevron circle button
+                            Container(
+                              width: 36,
+                              height: 36,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xFFF8FAFC),
+                              ),
+                              child: const Icon(
+                                Icons.chevron_right_rounded,
+                                color: Color(0xFF94A3B8),
+                                size: 20,
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
 
-                    const SizedBox(height: 28),
+                    const SizedBox(height: 32),
 
-                    // Calendar button
+                    // Meeting button
                     _buildActionButton(
                       context,
-                      icon: Icons.calendar_today_rounded,
+                      icon: Icons.calendar_month_rounded,
                       iconColor: const Color(0xFF7555F6),
-                      label: 'Calendar',
+                      borderColor: const Color(0xFF7555F6),
+                      label: 'Meeting',
                       onTap: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Session saved to calendar!'),
-                            duration: Duration(seconds: 2),
+                          SnackBar(
+                            content: const Row(
+                              children: [
+                                Icon(
+                                  Icons.video_call_rounded,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                                SizedBox(width: 10),
+                                Text('Opening video meeting room...'),
+                              ],
+                            ),
+                            backgroundColor: const Color(0xFF7555F6),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
                         );
                       },
@@ -422,38 +423,43 @@ class SessionDetailsScreen extends StatelessWidget {
                     _buildActionButton(
                       context,
                       icon: Icons.history_rounded,
-                      iconColor: const Color(0xFF141A28),
+                      iconColor: const Color(0xFF64748B),
+                      borderColor: const Color(0xFFE2E8F0),
                       label: 'Reschedule',
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                                'Reschedule request sent to mentor.'),
-                            duration: Duration(seconds: 2),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => RescheduleScreen(
+                              participantName: participantName,
+                              participantRole: participantRole,
+                            ),
                           ),
                         );
                       },
                     ),
 
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 24),
 
                     // Cancel Session text button
-                    GestureDetector(
-                      onTap: () {
-                        _showCancelDialog(context);
-                      },
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8),
-                        child: Text(
-                          'Cancel Session',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFFEF4444),
+                    Center(
+                      child: GestureDetector(
+                        onTap: () => _showCancelDialog(context),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8),
+                          child: Text(
+                            'Cancel Session',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFFEF4444),
+                            ),
                           ),
                         ),
                       ),
                     ),
+
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -468,28 +474,18 @@ class SessionDetailsScreen extends StatelessWidget {
     BuildContext context, {
     required IconData icon,
     required Color iconColor,
+    required Color borderColor,
     required String label,
     required VoidCallback onTap,
   }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        height: 54,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: const Color(0xFFF1F5F9),
-            width: 1.5,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.02),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
+          border: Border.all(color: borderColor, width: 1.5),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -514,35 +510,129 @@ class SessionDetailsScreen extends StatelessWidget {
     showDialog(
       context: context,
       builder: (dialogCtx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: const Text(
           'Cancel Session?',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.w800),
         ),
         content: const Text(
-          'Are you sure you want to cancel this scheduled session? This action cannot be undone.',
+          'Are you sure you want to cancel this scheduled session? Your mentor will be notified immediately.',
+          style: TextStyle(color: Color(0xFF64748B)),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogCtx),
             child: const Text('Keep Session'),
           ),
-          TextButton(
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFEF4444),
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
             onPressed: () {
               Navigator.pop(dialogCtx);
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('Session cancelled successfully.'),
+                  content: Text('Session cancelled.'),
+                  backgroundColor: Color(0xFFEF4444),
                 ),
               );
             },
-            child: const Text(
-              'Cancel Session',
-              style: TextStyle(color: Color(0xFFEF4444)),
-            ),
+            child: const Text('Yes, Cancel'),
           ),
         ],
       ),
     );
   }
+}
+
+class _ParticipantAvatarPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final w = size.width;
+    final h = size.height;
+
+    // Torso / White Polo
+    final shirtPaint = Paint()..color = Colors.white;
+    final shirtOutline = Paint()
+      ..color = const Color(0xFFE2E8F0)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.0;
+
+    final torsoPath = Path()
+      ..moveTo(w * 0.12, h)
+      ..lineTo(w * 0.12, h * 0.76)
+      ..quadraticBezierTo(w * 0.16, h * 0.64, w * 0.34, h * 0.62)
+      ..lineTo(w * 0.66, h * 0.62)
+      ..quadraticBezierTo(w * 0.84, h * 0.64, w * 0.88, h * 0.76)
+      ..lineTo(w * 0.88, h)
+      ..close();
+
+    canvas.drawPath(torsoPath, shirtPaint);
+    canvas.drawPath(torsoPath, shirtOutline);
+
+    // Orange sleeves
+    final orangePaint = Paint()..color = const Color(0xFFFDBA74);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromLTWH(w * 0.08, h * 0.74, w * 0.14, h * 0.20),
+        const Radius.circular(3),
+      ),
+      orangePaint,
+    );
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromLTWH(w * 0.78, h * 0.74, w * 0.14, h * 0.20),
+        const Radius.circular(3),
+      ),
+      orangePaint,
+    );
+
+    // Neck
+    final skinPaint = Paint()..color = const Color(0xFFFED7AA);
+    canvas.drawRect(
+      Rect.fromLTWH(w * 0.43, h * 0.50, w * 0.14, h * 0.14),
+      skinPaint,
+    );
+
+    // Head
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromLTWH(w * 0.31, h * 0.22, w * 0.38, h * 0.34),
+        const Radius.circular(8),
+      ),
+      skinPaint,
+    );
+
+    // Hair
+    const hairColor = Color(0xFF92400E);
+    final hairPaint = Paint()..color = hairColor;
+    final hairPath = Path()
+      ..moveTo(w * 0.27, h * 0.34)
+      ..quadraticBezierTo(w * 0.27, h * 0.12, w * 0.50, h * 0.12)
+      ..quadraticBezierTo(w * 0.73, h * 0.12, w * 0.73, h * 0.34)
+      ..lineTo(w * 0.68, h * 0.25)
+      ..quadraticBezierTo(w * 0.50, h * 0.19, w * 0.32, h * 0.25)
+      ..close();
+    canvas.drawPath(hairPath, hairPaint);
+
+    // Beard
+    final beardPath = Path()
+      ..moveTo(w * 0.31, h * 0.38)
+      ..lineTo(w * 0.31, h * 0.46)
+      ..quadraticBezierTo(w * 0.33, h * 0.56, w * 0.50, h * 0.56)
+      ..quadraticBezierTo(w * 0.67, h * 0.56, w * 0.69, h * 0.46)
+      ..lineTo(w * 0.69, h * 0.38)
+      ..quadraticBezierTo(w * 0.63, h * 0.44, w * 0.50, h * 0.44)
+      ..quadraticBezierTo(w * 0.37, h * 0.44, w * 0.31, h * 0.38)
+      ..close();
+    canvas.drawPath(beardPath, hairPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
