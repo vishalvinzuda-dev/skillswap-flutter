@@ -104,9 +104,10 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
           // 1: Users
           _buildNavItem(
             icon: Icons.groups_rounded,
-            label: 'Users',
+            label: _currentIndex == 1 ? 'USERS' : 'Users',
             isSelected: _currentIndex == 1,
             onTap: () => _onTabSelected(1),
+            dotsAbove: _currentIndex == 1 ? 3 : 0,
           ),
 
           // Center: '+' button
@@ -159,6 +160,7 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
     required String label,
     required bool isSelected,
     required VoidCallback onTap,
+    int dotsAbove = 0,
   }) {
     final activeColor = const Color(0xFF7555F6);
     final inactiveColor = const Color(0xFF94A3B8);
@@ -172,18 +174,40 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            if (dotsAbove > 0 && isSelected)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 2),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    dotsAbove,
+                    (index) => Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 1.5),
+                      width: 3.5,
+                      height: 3.5,
+                      decoration: BoxDecoration(
+                        color: activeColor,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            else
+              const SizedBox(height: 5.5),
             Icon(
               icon,
               size: 24,
               color: isSelected ? activeColor : inactiveColor,
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 3),
             Text(
               label,
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                 color: isSelected ? activeColor : inactiveColor,
+                letterSpacing: isSelected && (label == 'USERS' || label == 'SETTINGS') ? 0.3 : 0,
               ),
             ),
           ],
