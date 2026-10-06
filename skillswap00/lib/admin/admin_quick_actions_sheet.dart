@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'admin_category_management_screen.dart';
 
@@ -210,8 +211,8 @@ class AdminQuickActionsSheet extends StatelessWidget {
                     icon: Icons.verified_user_rounded,
                     color: const Color(0xFFF3E8FF),
                     iconColor: const Color(0xFF9333EA),
-                    title: 'Review Skills',
-                    subtitle: '12 pending approvals',
+                    title: 'Skill Requests',
+                    subtitle: 'Review incoming requests',
                     onTap: () {
                       Navigator.pop(context);
                       onNavigateToSkills();

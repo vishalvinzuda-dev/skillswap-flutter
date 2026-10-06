@@ -107,7 +107,6 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
             label: 'Users',
             isSelected: _currentIndex == 1,
             onTap: () => _onTabSelected(1),
-            dotsAbove: _currentIndex == 1 ? 3 : 0,
           ),
 
           // Center: '+' button
@@ -146,7 +145,7 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
           // 3: Settings
           _buildNavItem(
             icon: Icons.settings_rounded,
-            label: 'Settings',
+            label: _currentIndex == 3 ? 'SETTINGS' : 'Settings',
             isSelected: _currentIndex == 3,
             onTap: () => _onTabSelected(3),
           ),
@@ -160,7 +159,6 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
     required String label,
     required bool isSelected,
     required VoidCallback onTap,
-    int dotsAbove = 0,
   }) {
     final activeColor = const Color(0xFF7555F6);
     final inactiveColor = const Color(0xFF94A3B8);
@@ -174,50 +172,18 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Indicator above icon
-            SizedBox(
-              height: 6,
-              child: isSelected
-                  ? (dotsAbove > 0
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                            dotsAbove,
-                            (index) => Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 1.5),
-                              width: 3.5,
-                              height: 3.5,
-                              decoration: BoxDecoration(
-                                color: activeColor,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                          ),
-                        )
-                      : Container(
-                          width: 5,
-                          height: 5,
-                          decoration: BoxDecoration(
-                            color: activeColor,
-                            shape: BoxShape.circle,
-                          ),
-                        ))
-                  : const SizedBox.shrink(),
-            ),
-            const SizedBox(height: 2),
             Icon(
               icon,
               size: 24,
               color: isSelected ? activeColor : inactiveColor,
             ),
-            const SizedBox(height: 3),
+            const SizedBox(height: 4),
             Text(
               label,
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                 color: isSelected ? activeColor : inactiveColor,
-                letterSpacing: isSelected && label == 'Users' ? 0.3 : 0,
               ),
             ),
           ],
