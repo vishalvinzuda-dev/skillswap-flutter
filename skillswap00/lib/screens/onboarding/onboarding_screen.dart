@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
-import 'splash_screen.dart'; // For SkillSwapEmblemPainter
+import '../auth/login_screen.dart';
+import '../splash/splash_screen.dart'; // For SkillSwapEmblemPainter
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

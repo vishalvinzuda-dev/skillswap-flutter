@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'admin_widgets.dart';
 import 'admin_category_management_screen.dart';
-import '../edit_profile_screen.dart';
+import '../profile/edit_profile_screen.dart';
 
 class AdminUsersView extends StatefulWidget {
   final VoidCallback? onAvatarTap;

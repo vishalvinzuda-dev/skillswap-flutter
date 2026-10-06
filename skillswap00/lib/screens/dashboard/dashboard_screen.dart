@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'home_view.dart';
-import 'search_view.dart';
-import 'calendar_view.dart';
-import 'profile_view.dart';
+import 'views/home_view.dart';
+import 'views/search_view.dart';
+import 'views/calendar_view.dart';
+import 'views/profile_view.dart';
 
 class SkillSwapDashboard extends StatefulWidget {
   const SkillSwapDashboard({super.key});

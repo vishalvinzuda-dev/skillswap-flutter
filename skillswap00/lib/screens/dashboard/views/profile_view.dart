@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'edit_profile_screen.dart';
-import 'my_requests_screen.dart';
-import 'admin/admin_panel_screen.dart';
+import '../../profile/edit_profile_screen.dart';
+import '../../requests/my_requests_screen.dart';
+import '../../admin/admin_panel_screen.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});

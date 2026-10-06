@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui_designers_screen.dart';
+import '../mentors/ui_designers_screen.dart';
 
 class SkillRecommendation {
   final String title;

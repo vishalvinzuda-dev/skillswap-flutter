@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'send_request_screen.dart';
+import '../requests/send_request_screen.dart';
 
 class ExpertProfileScreen extends StatelessWidget {
   final String name;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'expert_profile_screen.dart';
+import '../mentors/expert_profile_screen.dart';
 import 'schedule_screen.dart';
 
 class SessionDetailsScreen extends StatelessWidget {

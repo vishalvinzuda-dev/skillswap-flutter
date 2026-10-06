@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'top_categories_screen.dart';
-import 'ui_designers_screen.dart';
-import 'find_mentor_screen.dart';
+import '../../skills/top_categories_screen.dart';
+import '../../mentors/ui_designers_screen.dart';
+import '../../mentors/find_mentor_screen.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'admin_widgets.dart';
-import '../login_screen.dart';
-import '../edit_profile_screen.dart';
+import '../auth/login_screen.dart';
+import '../profile/edit_profile_screen.dart';
 
 class AdminSettingsView extends StatefulWidget {
   final VoidCallback? onAvatarTap;

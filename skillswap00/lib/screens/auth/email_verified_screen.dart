@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'auth_widgets.dart';
-import 'dashboard_screen.dart';
+import '../dashboard/dashboard_screen.dart';
 
 class EmailVerifiedScreen extends StatelessWidget {
   const EmailVerifiedScreen({super.key});

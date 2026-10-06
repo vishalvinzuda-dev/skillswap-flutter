@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'auth_widgets.dart';
-import 'dashboard_screen.dart';
+import '../dashboard/dashboard_screen.dart';
 import 'forgot_password_screen.dart';
-import 'admin/admin_panel_screen.dart';
+import '../admin/admin_panel_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

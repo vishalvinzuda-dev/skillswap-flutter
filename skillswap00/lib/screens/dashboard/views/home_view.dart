@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'top_categories_screen.dart';
-import 'design_skills_screen.dart';
-import 'ui_designers_screen.dart';
-import 'expert_profile_screen.dart';
-import 'find_mentor_screen.dart';
-import 'session_details_screen.dart';
-import 'schedule_screen.dart';
+import '../../skills/top_categories_screen.dart';
+import '../../skills/design_skills_screen.dart';
+import '../../mentors/ui_designers_screen.dart';
+import '../../mentors/expert_profile_screen.dart';
+import '../../mentors/find_mentor_screen.dart';
+import '../../sessions/session_details_screen.dart';
+import '../../sessions/schedule_screen.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'session_details_screen.dart';
+import '../sessions/session_details_screen.dart';
 
 class IncomingRequestScreen extends StatefulWidget {
   final String senderName;

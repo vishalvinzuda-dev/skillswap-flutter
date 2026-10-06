@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'session_details_screen.dart';
+import '../sessions/session_details_screen.dart';
 import 'send_request_screen.dart';
 import 'incoming_request_screen.dart';
 
