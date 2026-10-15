@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../common/widgets/illustrated_avatar.dart';
 import '../mentors/expert_profile_screen.dart';
 import 'schedule_screen.dart';
+import 'meeting_screen.dart';
 
 class SessionDetailsScreen extends StatelessWidget {
   final String title;
@@ -395,25 +396,15 @@ class SessionDetailsScreen extends StatelessWidget {
                       borderColor: const Color(0xFF7555F6),
                       label: 'Meeting',
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: const Row(
-                              children: [
-                                Icon(
-                                  Icons.video_call_rounded,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                SizedBox(width: 10),
-                                Expanded(
-                                  child: Text('Opening video meeting room...'),
-                                ),
-                              ],
-                            ),
-                            backgroundColor: const Color(0xFF7555F6),
-                            behavior: SnackBarBehavior.floating,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => MeetingScreen(
+                              title: title,
+                              participantName: participantName,
+                              participantRole: participantRole,
+                              durationText: durationText,
+                              timeRange: timeRange,
                             ),
                           ),
                         );

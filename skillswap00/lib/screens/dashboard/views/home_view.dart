@@ -7,6 +7,7 @@ import '../../mentors/expert_profile_screen.dart';
 import '../../mentors/find_mentor_screen.dart';
 import '../../sessions/session_details_screen.dart';
 import '../../sessions/schedule_screen.dart';
+import '../../sessions/meeting_screen.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -314,29 +315,15 @@ class HomeView extends StatelessWidget {
                 );
               },
               onActionTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: const Row(
-                      children: [
-                        Icon(Icons.videocam_rounded, color: Colors.white, size: 20),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            'Connecting to Branding Workshop session...',
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
-                    backgroundColor: const Color(0xFF141927),
-                    behavior: SnackBarBehavior.floating,
-                    margin: const EdgeInsets.only(
-                      bottom: 105,
-                      left: 24,
-                      right: 24,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const MeetingScreen(
+                      title: 'Branding Workshop',
+                      participantName: 'Sarah Jenkins',
+                      participantRole: 'Senior Brand & Visual Designer',
+                      durationText: '(90 min)',
+                      timeRange: '10:00 AM - 11:30 AM',
                     ),
                   ),
                 );

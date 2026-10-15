@@ -13,6 +13,7 @@ export 'mentors/expert_profile_screen.dart';
 export 'mentors/ui_designers_screen.dart';
 export 'sessions/schedule_screen.dart';
 export 'sessions/session_details_screen.dart';
+export 'sessions/meeting_screen.dart';
 export 'requests/send_request_screen.dart';
 export 'requests/incoming_request_screen.dart';
 export 'requests/my_requests_screen.dart';

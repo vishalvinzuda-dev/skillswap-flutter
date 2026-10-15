@@ -1,1 +1,1 @@
-export '../core/constants/app_colors.dart';
+export 'colors/app_colors.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'session_details_screen.dart';
+import 'meeting_screen.dart';
 import '../mentors/find_mentor_screen.dart';
 
 class ScheduleDayItem {
@@ -977,27 +978,15 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.video_call_rounded,
-                                        color: Colors.white,
-                                        size: 20,
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        child: Text(
-                                          'Connecting to ${event.title} (${event.location ?? "Meeting"})...',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  backgroundColor: const Color(0xFF141927),
-                                  behavior: SnackBarBehavior.floating,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => MeetingScreen(
+                                    title: event.title,
+                                    participantName: event.participantName,
+                                    participantRole: event.participantRole,
+                                    durationText: '(${event.duration})',
+                                    timeRange: event.timeRange,
                                   ),
                                 ),
                               );

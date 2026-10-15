@@ -1,1 +1,1 @@
-export '../core/constants/app_strings.dart';
+export 'strings/app_strings.dart';
