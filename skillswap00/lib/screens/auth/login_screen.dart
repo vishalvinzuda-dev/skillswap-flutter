@@ -3,6 +3,7 @@ import 'auth_widgets.dart';
 import '../dashboard/dashboard_screen.dart';
 import 'forgot_password_screen.dart';
 import '../admin/admin_panel_screen.dart';
+import 'signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -132,7 +133,14 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const SignUpScreen(),
+                                ),
+                              );
+                            },
                             child: const Text(
                               "Sign Up",
                               style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../common/widgets/illustrated_avatar.dart';
 import '../mentors/expert_profile_screen.dart';
 import 'schedule_screen.dart';
 
@@ -312,7 +313,7 @@ class SessionDetailsScreen extends StatelessWidget {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(14),
                                     child: CustomPaint(
-                                      painter: _ParticipantAvatarPainter(),
+                                      painter: const IllustratedAvatarPainter(),
                                     ),
                                   ),
                                 ),
@@ -404,7 +405,9 @@ class SessionDetailsScreen extends StatelessWidget {
                                   size: 20,
                                 ),
                                 SizedBox(width: 10),
-                                Text('Opening video meeting room...'),
+                                Expanded(
+                                  child: Text('Opening video meeting room...'),
+                                ),
                               ],
                             ),
                             backgroundColor: const Color(0xFF7555F6),
@@ -548,91 +551,4 @@ class SessionDetailsScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class _ParticipantAvatarPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final w = size.width;
-    final h = size.height;
-
-    // Torso / White Polo
-    final shirtPaint = Paint()..color = Colors.white;
-    final shirtOutline = Paint()
-      ..color = const Color(0xFFE2E8F0)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.0;
-
-    final torsoPath = Path()
-      ..moveTo(w * 0.12, h)
-      ..lineTo(w * 0.12, h * 0.76)
-      ..quadraticBezierTo(w * 0.16, h * 0.64, w * 0.34, h * 0.62)
-      ..lineTo(w * 0.66, h * 0.62)
-      ..quadraticBezierTo(w * 0.84, h * 0.64, w * 0.88, h * 0.76)
-      ..lineTo(w * 0.88, h)
-      ..close();
-
-    canvas.drawPath(torsoPath, shirtPaint);
-    canvas.drawPath(torsoPath, shirtOutline);
-
-    // Orange sleeves
-    final orangePaint = Paint()..color = const Color(0xFFFDBA74);
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromLTWH(w * 0.08, h * 0.74, w * 0.14, h * 0.20),
-        const Radius.circular(3),
-      ),
-      orangePaint,
-    );
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromLTWH(w * 0.78, h * 0.74, w * 0.14, h * 0.20),
-        const Radius.circular(3),
-      ),
-      orangePaint,
-    );
-
-    // Neck
-    final skinPaint = Paint()..color = const Color(0xFFFED7AA);
-    canvas.drawRect(
-      Rect.fromLTWH(w * 0.43, h * 0.50, w * 0.14, h * 0.14),
-      skinPaint,
-    );
-
-    // Head
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromLTWH(w * 0.31, h * 0.22, w * 0.38, h * 0.34),
-        const Radius.circular(8),
-      ),
-      skinPaint,
-    );
-
-    // Hair
-    const hairColor = Color(0xFF92400E);
-    final hairPaint = Paint()..color = hairColor;
-    final hairPath = Path()
-      ..moveTo(w * 0.27, h * 0.34)
-      ..quadraticBezierTo(w * 0.27, h * 0.12, w * 0.50, h * 0.12)
-      ..quadraticBezierTo(w * 0.73, h * 0.12, w * 0.73, h * 0.34)
-      ..lineTo(w * 0.68, h * 0.25)
-      ..quadraticBezierTo(w * 0.50, h * 0.19, w * 0.32, h * 0.25)
-      ..close();
-    canvas.drawPath(hairPath, hairPaint);
-
-    // Beard
-    final beardPath = Path()
-      ..moveTo(w * 0.31, h * 0.38)
-      ..lineTo(w * 0.31, h * 0.46)
-      ..quadraticBezierTo(w * 0.33, h * 0.56, w * 0.50, h * 0.56)
-      ..quadraticBezierTo(w * 0.67, h * 0.56, w * 0.69, h * 0.46)
-      ..lineTo(w * 0.69, h * 0.38)
-      ..quadraticBezierTo(w * 0.63, h * 0.44, w * 0.50, h * 0.44)
-      ..quadraticBezierTo(w * 0.37, h * 0.44, w * 0.31, h * 0.38)
-      ..close();
-    canvas.drawPath(beardPath, hairPaint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

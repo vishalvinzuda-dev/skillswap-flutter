@@ -1,0 +1,20 @@
+# Build & Temporary Artifacts
+**/build/
+**/.dart_tool/
+**/.gradle/
+**/.kotlin/
+**/pubspec.lock.temp*
+
+# Logs & Dumps
+*.log
+*.dill
+replay_pid*.log
+
+# IDE & Editor caches
+.idea/
+*.iml
+.vscode/
+
+# OS Artifacts
+.DS_Store
+Thumbs.db

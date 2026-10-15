@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../common/widgets/skillswap_emblem.dart';
 import '../auth/login_screen.dart';
-import '../splash/splash_screen.dart'; // For SkillSwapEmblemPainter
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -72,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               width: 56,
               height: 56,
               margin: const EdgeInsets.only(bottom: 16),
-              child: CustomPaint(painter: SkillSwapEmblemPainter()),
+              child: const SkillSwapEmblem(size: 56),
             ),
 
             // Page View

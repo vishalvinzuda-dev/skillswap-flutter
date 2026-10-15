@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../common/widgets/illustrated_avatar.dart';
 import '../../skills/top_categories_screen.dart';
 import '../../skills/design_skills_screen.dart';
 import '../../mentors/ui_designers_screen.dart';
@@ -294,6 +295,24 @@ class HomeView extends StatelessWidget {
               title: 'Branding\nWorkshop',
               time: '10:00 AM - 11:30 AM',
               hasJoinButton: true,
+              onCardTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const SessionDetailsScreen(
+                      title: 'Branding Workshop',
+                      status: 'Confirmed',
+                      dateMonth: 'SEP',
+                      dateDay: '14',
+                      dateYearText: 'Saturday, 2024',
+                      timeRange: '10:00 AM - 11:30 AM',
+                      durationText: '(90 min)',
+                      participantName: 'Sarah Jenkins',
+                      participantRole: 'Senior Brand & Visual Designer',
+                    ),
+                  ),
+                );
+              },
               onActionTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -301,11 +320,21 @@ class HomeView extends StatelessWidget {
                       children: [
                         Icon(Icons.videocam_rounded, color: Colors.white, size: 20),
                         SizedBox(width: 10),
-                        Text('Connecting to Branding Workshop session...'),
+                        Expanded(
+                          child: Text(
+                            'Connecting to Branding Workshop session...',
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ],
                     ),
                     backgroundColor: const Color(0xFF141927),
                     behavior: SnackBarBehavior.floating,
+                    margin: const EdgeInsets.only(
+                      bottom: 105,
+                      left: 24,
+                      right: 24,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -324,6 +353,22 @@ class HomeView extends StatelessWidget {
               title: 'Advanced\nPython\nAPI',
               time: '02:00 PM - 03:30 PM',
               hasJoinButton: false,
+              onCardTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const SessionDetailsScreen(
+                      title: 'Advanced Python API Workshop',
+                      dateMonth: 'SEP',
+                      dateDay: '15',
+                      timeRange: '02:00 PM - 03:30 PM',
+                      durationText: '(90 min)',
+                      participantName: 'David Kim',
+                      participantRole: 'Senior Python Engineer',
+                    ),
+                  ),
+                );
+              },
               onActionTap: () {
                 Navigator.push(
                   context,
@@ -466,9 +511,9 @@ class HomeView extends StatelessWidget {
                 width: 2.5,
               ),
             ),
-            child: ClipOval(
+            child: const ClipOval(
               child: CustomPaint(
-                painter: _IllustratedAvatarPainter(),
+                painter: IllustratedAvatarPainter(),
               ),
             ),
           ),
@@ -494,10 +539,14 @@ class HomeView extends StatelessWidget {
     required String time,
     required bool hasJoinButton,
     required VoidCallback onActionTap,
+    VoidCallback? onCardTap,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Container(
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onCardTap ?? onActionTap,
+        child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         decoration: BoxDecoration(
@@ -633,7 +682,8 @@ class HomeView extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ),
+  );
   }
 }
 
@@ -782,110 +832,6 @@ class _MonitorIllustrationPainter extends CustomPainter {
         ..strokeWidth = 2
         ..style = PaintingStyle.stroke,
     );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
-
-// Custom vector illustrated avatar matching the design screenshot
-class _IllustratedAvatarPainter extends CustomPainter {
-  const _IllustratedAvatarPainter();
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final w = size.width;
-    final h = size.height;
-
-    // Torso / White Polo Shirt
-    final shirtPaint = Paint()..color = Colors.white;
-    final shirtOutline = Paint()
-      ..color = const Color(0xFFE2E8F0)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.0;
-
-    final torsoPath = Path()
-      ..moveTo(w * 0.12, h)
-      ..lineTo(w * 0.12, h * 0.76)
-      ..quadraticBezierTo(w * 0.16, h * 0.64, w * 0.34, h * 0.62)
-      ..lineTo(w * 0.66, h * 0.62)
-      ..quadraticBezierTo(w * 0.84, h * 0.64, w * 0.88, h * 0.76)
-      ..lineTo(w * 0.88, h)
-      ..close();
-
-    canvas.drawPath(torsoPath, shirtPaint);
-    canvas.drawPath(torsoPath, shirtOutline);
-
-    // Sleeves / Orange Accents
-    const accentColor = Color(0xFFFDBA74);
-    final accentPaint = Paint()..color = accentColor;
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromLTWH(w * 0.08, h * 0.74, w * 0.14, h * 0.20),
-        const Radius.circular(4),
-      ),
-      accentPaint,
-    );
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromLTWH(w * 0.78, h * 0.74, w * 0.14, h * 0.20),
-        const Radius.circular(4),
-      ),
-      accentPaint,
-    );
-
-    // Polo Collar Line
-    final collarPaint = Paint()
-      ..color = const Color(0xFFCBD5E1)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.2;
-    final collarPath = Path()
-      ..moveTo(w * 0.42, h * 0.62)
-      ..lineTo(w * 0.50, h * 0.72)
-      ..lineTo(w * 0.58, h * 0.62);
-    canvas.drawPath(collarPath, collarPaint);
-
-    // Neck
-    final skinPaint = Paint()..color = const Color(0xFFFED7AA);
-    canvas.drawRect(
-      Rect.fromLTWH(w * 0.43, h * 0.50, w * 0.14, h * 0.14),
-      skinPaint,
-    );
-
-    // Ears
-    canvas.drawCircle(Offset(w * 0.29, h * 0.38), w * 0.05, skinPaint);
-    canvas.drawCircle(Offset(w * 0.71, h * 0.38), w * 0.05, skinPaint);
-
-    // Face / Head
-    final faceRect = RRect.fromRectAndRadius(
-      Rect.fromLTWH(w * 0.31, h * 0.22, w * 0.38, h * 0.34),
-      const Radius.circular(10),
-    );
-    canvas.drawRRect(faceRect, skinPaint);
-
-    // Hair (warm rich brown)
-    const hairColor = Color(0xFF92400E);
-    final hairPaint = Paint()..color = hairColor;
-    final hairPath = Path()
-      ..moveTo(w * 0.27, h * 0.34)
-      ..quadraticBezierTo(w * 0.27, h * 0.12, w * 0.50, h * 0.12)
-      ..quadraticBezierTo(w * 0.73, h * 0.12, w * 0.73, h * 0.34)
-      ..lineTo(w * 0.68, h * 0.25)
-      ..quadraticBezierTo(w * 0.50, h * 0.19, w * 0.32, h * 0.25)
-      ..close();
-    canvas.drawPath(hairPath, hairPaint);
-
-    // Beard
-    final beardPath = Path()
-      ..moveTo(w * 0.31, h * 0.38)
-      ..lineTo(w * 0.31, h * 0.46)
-      ..quadraticBezierTo(w * 0.33, h * 0.56, w * 0.50, h * 0.56)
-      ..quadraticBezierTo(w * 0.67, h * 0.56, w * 0.69, h * 0.46)
-      ..lineTo(w * 0.69, h * 0.38)
-      ..quadraticBezierTo(w * 0.63, h * 0.44, w * 0.50, h * 0.44)
-      ..quadraticBezierTo(w * 0.37, h * 0.44, w * 0.31, h * 0.38)
-      ..close();
-    canvas.drawPath(beardPath, hairPaint);
   }
 
   @override
